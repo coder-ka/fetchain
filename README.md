@@ -16,13 +16,13 @@ const resp = chain()
 fetch('https://example.com').then(resp.handle).then(resp => {
     switch(resp.status) {
         case 200:
-            const html = resp.data // string
+            const html = resp.result // string
             console.log(html)
             break;
         case 401:
         case 404:
         case 500:
-            resp.data // void
+            resp.result // void
             break;
         default:
             resp.status // never
@@ -62,15 +62,15 @@ import { fetchUsers } from "./fetch-users";
 fetchUsers().then(resp => {
     switch(resp.status) {
         case 200:
-            const users = resp.data;
+            const users = resp.result;
             console.log(users);
             break;
         case 400:
-            const errors = resp.data;
+            const errors = resp.result;
             console.log(errors);
             break;
         case 401:
-            const handleAuthorized = resp.data;
+            const handleAuthorized = resp.result;
             handleAuthorized(() => location.href = "/login")
             break;
     }
